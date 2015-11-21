@@ -9,15 +9,24 @@ namespace CarRental.Controllers
 {
     public class HomeController : Controller
     {
+        private CarRentalContext db = new CarRentalContext();
 
-        [HttpGet]                                       // GET only
-        public ActionResult Register()
+        // GET ../Home/Index    default controller
+        public ActionResult Index()
         {
-            return View();                              // strongly typed view, don't need though to pass in a student object
+            return View();
         }
 
+        // GET  ../Home/allcustomers  displays all customers
+        [HttpGet]                                       // GET only
+        public ActionResult AllCustomers()
+        {
+            return View();                              // strongly typed view, don't need though to pass in a customer object
+        }
+
+        // POST  ../Home/addcustomer   add customer to the list
         [HttpPost]
-        public ActionResult Register(Customer customer)
+        public ActionResult AddCustomer(Customer customer)
         {
             if (ModelState.IsValid)                     // check server-side validation
             {
@@ -29,24 +38,60 @@ namespace CarRental.Controllers
             }
         }
 
-        // display details of the customer just registered
-        public ActionResult Confirm(Customer customer)
-        {
-            return View(customer);
-        }
-        // ../Home/... is default URI              // 
-        [HttpGet]                                       // GET only
-        public ActionResult AllCars()
-        {
-            return View();                              // strongly typed view, don't need though to pass in a student object
-        }
-
+        // DELETE  ../Home/deletecustomer   delete customer from the list
         [HttpPost]
-        public ActionResult BookCar(Car car)
+        public ActionResult DeleteCustomer(Customer customer)
         {
             if (ModelState.IsValid)                     // check server-side validation
             {
-                return RedirectToAction("Confirm", car);
+                return RedirectToAction("Confirm", customer);
+            }
+            else
+            {
+                return View();
+            }
+        }
+        // display details of the customer just added/deleted/booked 
+        public ActionResult ConfirmCustomer(Customer customer)
+        {
+            return View(customer);
+        }
+
+        // GET  ../Home/allcars   displays all cars
+        [HttpGet]                                       // GET only
+        public ActionResult AllCars()
+        {
+            var records = db.Cars.OrderBy(r => r.CarMake);
+            
+            return View(records);                              // strongly typed view, don't need though to pass in a car object
+        }
+
+        // GET  ../Home/availablecars   displays available cars only
+        [HttpGet]                                       // GET only
+        public ActionResult AvailableCars()
+        {
+            //todo
+            return View();                              
+        }
+
+        // POST  ../Home/addcar   add car to the list
+        [HttpPost]
+        public ActionResult AddCar(Car car)
+        {
+            if (ModelState.IsValid)                     // check server-side validation
+            {
+                var record = db.Cars.FirstOrDefault(c => c.CarRegNo == car.CarRegNo);
+                if (record == null)
+                {
+                    db.Cars.Add(car);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Confirm", car);
+                }
+                else
+                {
+                    return View();
+                }
             }
             else
             {
@@ -54,18 +99,77 @@ namespace CarRental.Controllers
             }
         }
 
-        // display details of the car just booked
-        public ActionResult Confirm(Car car)
+        // DELETE  ../Home/deletecar   delete car from the list
+        [HttpPost]
+        public ActionResult DeleteCar(Car car)
+        {
+            if (ModelState.IsValid)                     // check server-side validation
+            {
+                var record = db.Cars.FirstOrDefault(c => c.CarRegNo == car.CarRegNo);
+                if (record == null)
+                {
+                    db.Cars.Remove(record);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Confirm", car);
+                }
+                else
+                {
+                    return View();
+                }
+
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        // display details of the car just added/deleted/booked 
+        public ActionResult ConfirmCar(Car car)
         {
             return View(car);
         }
 
-
-        public ActionResult Index()
+        // GET  ../Home/allorders   displays all arders
+        [HttpGet]                                       // GET only
+        public ActionResult AllOrders()
         {
-            return View();
+            return View();                              // strongly typed view, don't need though to pass in a car object
         }
 
+        // POST  ../Home/addorder   add order to the list
+        [HttpPost]
+        public ActionResult NewOrder(Order order)
+        {
+            if (ModelState.IsValid)                     // check server-side validation
+            {
+                return RedirectToAction("Confirm", order);
+            }
+            else
+            {
+                return View();
+            }
+        }
+        // DELETE  ../Home/deleteorder   delete order from the list
+        [HttpPost]
+        public ActionResult DeleteOrder(Order order)
+        {
+            if (ModelState.IsValid)                     // check server-side validation
+            {
+                return RedirectToAction("Confirm", order);
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        // display details of the order just added/deleted/booked 
+        public ActionResult ConfirmOrder(Order order)
+        {
+            return View(order);
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

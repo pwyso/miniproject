@@ -13,15 +13,18 @@ namespace CarRental.Models
         [Key]
         //lets you enter the primary key for the CarRegNo rather than having the database generate it
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public string CustomerID { get; set; }
+        [RegularExpression("[0-9]")]      // numbers and capital letters only
+        [StringLength(10, ErrorMessage = "Max. lenght is 10")]
+        [Display(Name = "Phone No.")]
+        public string CustPhone { get; set; }
 
         [Required]
         [Display(Name = "First Name")]
-        public string CusFirstName { get; set; }
+        public string CustFirstName { get; set; }
 
         [Required]
         [Display(Name = "Last Name")]
-        public string CusLastName { get; set; }
+        public string CustLastName { get; set; }
 
         [Required]
         [Display(Name = "Address")]
@@ -33,11 +36,7 @@ namespace CarRental.Models
         [DataType(DataType.EmailAddress)]
         public string CustEmail { get; set; }
 
-        [Required]
-        [Display(Name = "Phone No.")]
-        public string CustPhone { get; set; }
-
-        public virtual List<Order> Orders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 
 }

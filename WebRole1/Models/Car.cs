@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -12,13 +13,13 @@ namespace CarRental.Models
     //public enum PricePerRentingDays { UpToThree = 50, UpToSeen = 42, OverSeven = 35}
     public class Car
     {
-        //[Key]
-        //public string CarID { get; set; }
 
         [Key]
         //lets you enter the primary key for the CarRegNo rather than having the database generate it
         [DatabaseGenerated(DatabaseGeneratedOption.None)] 
         [Display(Name = "Registration")]
+        [RegularExpression("[0-9A-Z]")]      // numbers and capital letters only
+        [StringLength(10, ErrorMessage = "Max. lenght is 10")]
         public string CarRegNo { get; set; }
 
         [Required]
@@ -26,6 +27,17 @@ namespace CarRental.Models
         public CarSegment CarCategory { get; set; }
 
         [Required]
+        [Display(Name = "Make")]
+        public string CarMake { get; set; }
+
+        [Required]
+        [Display(Name = "Model")]
+        public string CarModel { get; set; }
+
+        [Display(Name = "Days of rent")]
+        [Range(1, 30)]
+        public int DaysOfRental { get; set; }
+
         [Display(Name = "Price per Day")]
         public decimal RentPrice
         {
@@ -44,19 +56,13 @@ namespace CarRental.Models
                     return 35;
                 }
             }
-            set
-            {
-
-            }
         }
-
-        [Display(Name = "Days of rent")]
-        public int DaysOfRental { get; set; }
 
         
         [Display(Name = "Availability")]
         public bool IsHired { get; set; }
 
-        public virtual List<Order> Orders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
+
     }
 }

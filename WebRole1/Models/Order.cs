@@ -11,11 +11,20 @@ namespace CarRental.Models
     {
         [Display(Name = "Reservation Reference No.")]
         public string OrderID { get; set; }
-        public string CustomerID { get; set; }
+
+        public string CustPhone { get; set; }
         public string CarRegNo { get; set; }
 
+
+
         [Display(Name = "Total Cost")]
-        public decimal TotalCost { get; set; }
+        public decimal TotalCost
+        {
+            get
+            {
+                return Car.DaysOfRental * Car.RentPrice;
+            }
+        }
 
         public virtual Car Car { get; set; }
         public virtual Customer Customer { get; set; }
