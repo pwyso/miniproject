@@ -39,7 +39,7 @@ namespace CarRental.Controllers
         }
 
         // DELETE  ../Home/deletecustomer   delete customer from the list
-        [HttpPost]
+        [HttpDelete]
         public ActionResult DeleteCustomer(Customer customer)
         {
             if (ModelState.IsValid)                     // check server-side validation
@@ -51,7 +51,8 @@ namespace CarRental.Controllers
                 return View();
             }
         }
-        // display details of the customer just added/deleted/booked 
+
+        // display details of the customer just added 
         public ActionResult ConfirmCustomer(Customer customer)
         {
             return View(customer);
@@ -62,7 +63,6 @@ namespace CarRental.Controllers
         public ActionResult AllCars()
         {
             var records = db.Cars.OrderBy(r => r.CarMake);
-            
             return View(records);                              // strongly typed view, don't need though to pass in a car object
         }
 
@@ -70,8 +70,8 @@ namespace CarRental.Controllers
         [HttpGet]                                       // GET only
         public ActionResult AvailableCars()
         {
-            //todo
-            return View();                              
+            var records = db.Cars.OrderBy(r => r.CarMake).Where(r => r.IsHired == false);
+            return View(records);
         }
 
         // POST  ../Home/addcar   add car to the list
@@ -80,18 +80,9 @@ namespace CarRental.Controllers
         {
             if (ModelState.IsValid)                     // check server-side validation
             {
-                var record = db.Cars.FirstOrDefault(c => c.CarRegNo == car.CarRegNo);
-                if (record == null)
-                {
-                    db.Cars.Add(car);
-                    db.SaveChanges();
-
-                    return RedirectToAction("Confirm", car);
-                }
-                else
-                {
-                    return View();
-                }
+                db.Cars.Add(car);
+                db.SaveChanges();
+                return RedirectToAction("ConfirmCar", car);
             }
             else
             {
@@ -100,24 +91,22 @@ namespace CarRental.Controllers
         }
 
         // DELETE  ../Home/deletecar   delete car from the list
-        [HttpPost]
-        public ActionResult DeleteCar(Car car)
+        [HttpDelete]
+        public ActionResult DeleteCar(string regNo)
         {
             if (ModelState.IsValid)                     // check server-side validation
             {
-                var record = db.Cars.FirstOrDefault(c => c.CarRegNo == car.CarRegNo);
-                if (record == null)
+                var record = db.Cars.FirstOrDefault(c => c.CarRegNo == regNo);
+                if (record != null)
                 {
                     db.Cars.Remove(record);
                     db.SaveChanges();
-
-                    return RedirectToAction("Confirm", car);
+                    return RedirectToAction("AllCars");
                 }
                 else
                 {
                     return View();
                 }
-
             }
             else
             {
@@ -125,7 +114,8 @@ namespace CarRental.Controllers
             }
         }
 
-        // display details of the car just added/deleted/booked 
+        // display details of the car just added
+        [HttpGet]
         public ActionResult ConfirmCar(Car car)
         {
             return View(car);
@@ -152,7 +142,7 @@ namespace CarRental.Controllers
             }
         }
         // DELETE  ../Home/deleteorder   delete order from the list
-        [HttpPost]
+        [HttpDelete]
         public ActionResult DeleteOrder(Order order)
         {
             if (ModelState.IsValid)                     // check server-side validation
@@ -165,7 +155,8 @@ namespace CarRental.Controllers
             }
         }
 
-        // display details of the order just added/deleted/booked 
+        // display details of the order just added
+        [HttpGet]
         public ActionResult ConfirmOrder(Order order)
         {
             return View(order);

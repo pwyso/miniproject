@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -10,13 +11,13 @@ using System.Threading.Tasks;
 namespace CarRental.Models
 {
     public enum CarSegment { Small, Medium, Big }
-    //public enum PricePerRentingDays { UpToThree = 50, UpToSeen = 42, OverSeven = 35}
+    public enum PricePerRentingDays { OverSeven = 35, UpToSeen = 42, UpToThree = 50 }
     public class Car
     {
 
         [Key]
         //lets you enter the primary key for the CarRegNo rather than having the database generate it
-        [DatabaseGenerated(DatabaseGeneratedOption.None)] 
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Display(Name = "Registration")]
         [RegularExpression("[0-9A-Z]")]      // numbers and capital letters only
         [StringLength(10, ErrorMessage = "Max. lenght is 10")]
@@ -43,22 +44,22 @@ namespace CarRental.Models
         {
             get
             {
-                if (DaysOfRental <= 3)
+                if (CarCategory == CarSegment.Small)
                 {
-                    return 50;
+                    return 35;
                 }
-                else if (DaysOfRental <= 7)
+                else if (CarCategory == CarSegment.Medium)
                 {
-                    return 43;
+                    return 45;
                 }
                 else
                 {
-                    return 35;
+                    return 55;
                 }
             }
         }
 
-        
+
         [Display(Name = "Availability")]
         public bool IsHired { get; set; }
 

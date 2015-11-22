@@ -1,5 +1,5 @@
-﻿@using CarRental.Models
-@model IEnumerable<Car>
+﻿@model IEnumerable<CarRental.Models.Car>
+
 
 @{
     ViewBag.Title = "AllCars";
@@ -8,7 +8,7 @@
 <h2>AllCars</h2>
 
 <table>
-    <tr> 
+    <tr>
         <th>
             @Html.DisplayNameFor(model => model.CarRegNo)
         </th>
@@ -27,7 +27,7 @@
         <th></th>
     </tr>
 
-    @foreach (Car item in Model)
+    @foreach (var item in Model)
     {
         <tr>
             <td>
@@ -45,75 +45,22 @@
             <td>
                 @Html.DisplayFor(model => item.IsHired)
             </td>
-@*
+
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+
+                @Html.ActionLink("Edit", "Home", new { id = item.CarRegNo }) |
+                @Html.ActionLink("Delete", "DeleteCar", "Home", new { id = item.CarRegNo }, null)
             </td>
-*@
+
         </tr>
     }
 
 </table>
 
-@*     
+<p>
+    @Html.ActionLink("Add car", "AddCar")
+</p>
+<P>
+    @Html.ActionLink("Back to Home", "Index")
+</P>
 
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
-
-                <div class="form-horizontal">
-                    <h4>Car</h4>
-                    <hr />
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.CarRegNo, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.CarRegNo, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.CarRegNo, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.CarCategory, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EnumDropDownListFor(model => model.CarCategory, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.CarCategory, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.DaysOfRental, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.DaysOfRental, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.DaysOfRental, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.IsHired, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            <div class="checkbox">
-                                @Html.EditorFor(model => model.IsHired)
-                                @Html.ValidationMessageFor(model => model.IsHired, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Create" class="btn btn-default" />
-                        </div>
-                    </div>
-                </div>
-            }
-
-*@
-        <div>
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-
-        @section Scripts {
-            @Scripts.Render("~/bundles/jqueryval")
-        }

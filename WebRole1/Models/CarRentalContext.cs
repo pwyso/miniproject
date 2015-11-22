@@ -10,7 +10,7 @@ namespace CarRental.Models
 {
     public class CarRentalContext : DbContext
     {
-        public CarRentalContext() : base("CarRentalContext")
+        public CarRentalContext() : base("name=CarRentalContext")
         {
         }
         public DbSet<Car> Cars { get; set; }

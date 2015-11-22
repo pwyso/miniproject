@@ -22,7 +22,18 @@ namespace CarRental.Models
         {
             get
             {
-                return Car.DaysOfRental * Car.RentPrice;
+                if (Car.DaysOfRental <= 3)
+                {
+                    return Car.RentPrice * Car.DaysOfRental;
+                }
+                else if (Car.DaysOfRental <= 10)
+                {
+                    return (Car.RentPrice - 3) * Car.DaysOfRental;
+                }
+                else
+                {
+                    return (Car.RentPrice - 6) * Car.DaysOfRental;
+                }
             }
         }
 

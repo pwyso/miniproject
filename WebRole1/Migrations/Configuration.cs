@@ -1,4 +1,4 @@
-namespace WebRole1.Migrations
+namespace CarRental.Migrations
 {
     using System;
     using System.Data.Entity;
@@ -9,7 +9,7 @@ namespace WebRole1.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(CarRental.Models.CarRentalContext context)
