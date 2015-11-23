@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using CarRental.Models;
 
+
 namespace CarRental.Controllers
 {
     public class HomeController : Controller
@@ -58,61 +59,6 @@ namespace CarRental.Controllers
             return View(customer);
         }
 
-        // GET  ../Home/allcars   displays all cars
-        [HttpGet]                                       // GET only
-        public ActionResult AllCars()
-        {
-            var records = db.Cars.OrderBy(r => r.CarMake);
-            return View(records);                              // strongly typed view, don't need though to pass in a car object
-        }
-
-        // GET  ../Home/availablecars   displays available cars only
-        [HttpGet]                                       // GET only
-        public ActionResult AvailableCars()
-        {
-            var records = db.Cars.OrderBy(r => r.CarMake).Where(r => r.IsHired == false);
-            return View(records);
-        }
-
-        // POST  ../Home/addcar   add car to the list
-        [HttpPost]
-        public ActionResult AddCar(Car car)
-        {
-            if (ModelState.IsValid)                     // check server-side validation
-            {
-                db.Cars.Add(car);
-                db.SaveChanges();
-                return RedirectToAction("ConfirmCar", car);
-            }
-            else
-            {
-                return View();
-            }
-        }
-
-        // DELETE  ../Home/deletecar   delete car from the list
-        [HttpDelete]
-        public ActionResult DeleteCar(string regNo)
-        {
-            if (ModelState.IsValid)                     // check server-side validation
-            {
-                var record = db.Cars.FirstOrDefault(c => c.CarRegNo == regNo);
-                if (record != null)
-                {
-                    db.Cars.Remove(record);
-                    db.SaveChanges();
-                    return RedirectToAction("AllCars");
-                }
-                else
-                {
-                    return View();
-                }
-            }
-            else
-            {
-                return View();
-            }
-        }
 
         // display details of the car just added
         [HttpGet]

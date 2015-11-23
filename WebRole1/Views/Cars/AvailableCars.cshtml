@@ -7,7 +7,7 @@
 
 <h2>AllCars</h2>
 
-<table>
+<table  class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.CarRegNo)
@@ -43,24 +43,18 @@
                 @Html.DisplayFor(model => item.RentPrice)
             </td>
             <td>
-                @Html.DisplayFor(model => item.IsHired)
+                @Html.Raw((item.IsHired) ? "No" : "Yes") <!-- displays Yes/No instead of check box -->
+                @*@Html.DisplayFor(model => item.IsHired)*@
             </td>
 
             <td>
-
-                @Html.ActionLink("Edit", "Home", new { id = item.CarRegNo }) |
-                @Html.ActionLink("Delete", "DeleteCar", "Home", new { id = item.CarRegNo }, null)
+                @Html.ActionLink("Book car", "Home", new { id = item.CarRegNo })
             </td>
-
         </tr>
     }
 
 </table>
 
-<p>
-    @Html.ActionLink("Add car", "AddCar")
-</p>
 <P>
-    @Html.ActionLink("Back to Home", "Index")
+    @Html.ActionLink("Back to Home", "Index", "Home")
 </P>
-
