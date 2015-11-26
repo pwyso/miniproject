@@ -1,0 +1,64 @@
+﻿@model IEnumerable<CarRental.Models.Order>
+
+@{
+    ViewBag.Title = "AllOrders";
+}
+
+<h2>Order List</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Car.CarMake)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Car.CarModel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DaysOfRental)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.CustFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.CustLastName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Car.CarMake)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Car.CarModel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DaysOfRental)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.CustFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.CustLastName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.OrderID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.OrderID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.OrderID })
+        </td>
+    </tr>
+}
+
+</table>
+
+<p>
+    @Html.ActionLink("Back to Home", "Index", "Home")
+</p>

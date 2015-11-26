@@ -1,11 +1,12 @@
 ﻿@model IEnumerable<CarRental.Models.Car>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "AllCars";
 }
 
-<h2>All Cars</h2>
-
+<h2>All cars</h2>
+<br>
+<h4><b>Small</b></h4>
 
 <table  class="table">
     <tr>
@@ -19,15 +20,15 @@
             @Html.DisplayNameFor(model => model.CarModel)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DaysOfRental)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.IsHired)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
+    if (item.CarCategory == CarRental.Models.CarSegment.Small)
+    {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.CarCategory)
@@ -39,21 +40,113 @@
             @Html.DisplayFor(modelItem => item.CarModel)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DaysOfRental)
-        </td>
-        <td>
             @Html.Raw((item.IsHired) ? "No" : "Yes") <!-- displays Yes/No instead of check box -->
             @*@Html.DisplayFor(modelItem => item.IsHired)*@
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", "Cars", new { id=item.CarRegNo }, null) |
-            @Html.ActionLink("Details", "Details", "Cars", new { id=item.CarRegNo }, null) |
-            @Html.ActionLink("Delete", "Delete", "Cars", new { id=item.CarRegNo }, null)
+            @Html.ActionLink("Edit", "Edit", "Cars", new { id = item.CarRegNo }, null) |
+            @Html.ActionLink("Details", "Details", "Cars", new { id = item.CarRegNo }, null) |
+            @Html.ActionLink("Delete", "Delete", "Cars", new { id = item.CarRegNo }, null)
         </td>
     </tr>
+    }
 }
-
 </table>
+
+<h4><b>Medium</b></h4>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CarCategory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CarMake)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CarModel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsHired)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.CarCategory == CarRental.Models.CarSegment.Medium)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CarCategory)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CarMake)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CarModel)
+                </td>
+                <td>
+                    @Html.Raw((item.IsHired) ? "No" : "Yes") <!-- displays Yes/No instead of check box -->
+                    @*@Html.DisplayFor(modelItem => item.IsHired)*@
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Cars", new { id = item.CarRegNo }, null) |
+                    @Html.ActionLink("Details", "Details", "Cars", new { id = item.CarRegNo }, null) |
+                    @Html.ActionLink("Delete", "Delete", "Cars", new { id = item.CarRegNo }, null)
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+<h4><b>Big</b></h4>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CarCategory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CarMake)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CarModel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsHired)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.CarCategory == CarRental.Models.CarSegment.Big)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CarCategory)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CarMake)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CarModel)
+                </td>
+                <td>
+                    @Html.Raw((item.IsHired) ? "No" : "Yes") <!-- displays Yes/No instead of check box -->
+                    @*@Html.DisplayFor(modelItem => item.IsHired)*@
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Cars", new { id = item.CarRegNo }, null) |
+                    @Html.ActionLink("Details", "Details", "Cars", new { id = item.CarRegNo }, null) |
+                    @Html.ActionLink("Delete", "Delete", "Cars", new { id = item.CarRegNo }, null)
+                </td>
+            </tr>
+        }
+    }
+</table>
+
 <p>
     @Html.ActionLink("Add car", "Create", "Cars")
 </p>

@@ -10,123 +10,110 @@ using CarRental.Models;
 
 namespace CarRental.Controllers
 {
-    public class CarsController : Controller
+    public class CustomersController : Controller
     {
         private CarRentalContext db = new CarRentalContext();
 
-
-        // GET  ../Cars/allcars   displays all cars
-        [HttpGet]                                       // GET only
-        public ActionResult AllCars()
+        // GET: Customers
+        public ActionResult AllCustomers()
         {
-            var records = db.Cars.OrderBy(r => r.CarMake);
-            return View(records);                              // strongly typed view, don't need though to pass in a car object
-        }
-
-        // GET  ../Cars/availablecars   displays available cars only
-        [HttpGet]                                       // GET only
-        public ActionResult AvailableCars()
-        {
-            var records = db.Cars.OrderBy(r => r.CarMake).Where(r => r.IsHired == false);
+            var records = db.Customers.OrderBy(r => r.CustLastName);
             return View(records);
         }
 
-        // GET: Cars/Details/5
-        [HttpGet]
+        // GET: Customers/Details/5
         public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Car car = db.Cars.Find(id);
-            if (car == null)
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(car);
+            return View(customer);
         }
 
-        // GET: Cars/Create
-        [HttpGet]
+        // GET: Customers/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Cars/Create
+        // POST: Customers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CarRegNo,CarCategory,CarMake,CarModel,IsHired")] Car car)
+        public ActionResult Create([Bind(Include = "CustPhone,CustFirstName,CustLastName,CustAddress,CustEmail")] Customer customer)
         {
             if (ModelState.IsValid)
             {
-                db.Cars.Add(car);
+                db.Customers.Add(customer);
                 db.SaveChanges();
-                return RedirectToAction("AllCars");
+                return RedirectToAction("AllCustomers");
             }
 
-            return View(car);
+            return View(customer);
         }
 
-        // GET: Cars/Edit/5
+        // GET: Customers/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Car car = db.Cars.Find(id);
-            if (car == null)
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(car);
+            return View(customer);
         }
 
-        // POST: Cars/Edit/5
+        // POST: Customers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CarRegNo,CarCategory,CarMake,CarModel,DaysOfRental,IsHired")] Car car)
+        public ActionResult Edit([Bind(Include = "CustPhone,CustFirstName,CustLastName,CustAddress,CustEmail")] Customer customer)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(car).State = EntityState.Modified;
+                db.Entry(customer).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("AllCars");
+                return RedirectToAction("AllCustomers");
             }
-            return View(car);
+            return View(customer);
         }
 
-        // GET: Cars/Delete/5
-        [HttpGet]
+        // GET: Customers/Delete/5
         public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Car car = db.Cars.Find(id);
-            if (car == null)
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(car);
+            return View(customer);
         }
 
-        // POST: Cars/Delete/5
+        // POST: Customers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Car car = db.Cars.Find(id);
-            db.Cars.Remove(car);
+            Customer customer = db.Customers.Find(id);
+            db.Customers.Remove(customer);
             db.SaveChanges();
-            return RedirectToAction("AllCars");
+            return RedirectToAction("AllCustomers");
         }
 
         protected override void Dispose(bool disposing)

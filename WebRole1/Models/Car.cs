@@ -38,9 +38,6 @@ namespace CarRental.Models
         [StringLength(20, ErrorMessage = "Max. lenght is 20")]
         public string CarModel { get; set; }
 
-        [Display(Name = "Days of rent")]
-        [Range(1, 30)]
-        public int DaysOfRental { get; set; }
 
         [Display(Name = "Price per Day")]
         public decimal RentPrice
