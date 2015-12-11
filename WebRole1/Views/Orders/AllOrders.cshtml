@@ -1,11 +1,14 @@
 ﻿@model IEnumerable<CarRental.Models.Order>
 
 @{
-    ViewBag.Title = "AllOrders";
+    ViewBag.Title = "Index";
 }
 
-<h2>Order List</h2>
+<h2>Index</h2>
 
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 <table class="table">
     <tr>
         <th>
@@ -25,6 +28,12 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Customer.CustLastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RentPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalCost)
         </th>
         <th></th>
     </tr>
@@ -50,6 +59,12 @@
             @Html.DisplayFor(modelItem => item.Customer.CustLastName)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.RentPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalCost)
+        </td>
+        <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.OrderID }) |
             @Html.ActionLink("Details", "Details", new { id=item.OrderID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.OrderID })
@@ -58,7 +73,3 @@
 }
 
 </table>
-
-<p>
-    @Html.ActionLink("Back to Home", "Index", "Home")
-</p>

@@ -14,7 +14,7 @@ namespace CarRental.Models
         //lets you enter the primary key for the CustPhone rather than having the database generate it
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         //[StringLength(10, ErrorMessage = "Max. lenght is 10")]
-        [RegularExpression("[0-9]{1,11}", ErrorMessage = "No spaces allowed, max. 11 digits.")]    // numbers only, lenght 9-11
+        //[RegularExpression("[0-9]{1,11}", ErrorMessage = "No spaces allowed, max. 11 digits.")]    // numbers only, lenght 9-11
         [Display(Name = "Phone No.")]
         public string CustPhone { get; set; }
 

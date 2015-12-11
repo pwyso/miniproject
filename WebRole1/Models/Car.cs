@@ -10,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace CarRental.Models
 {
-    public enum CarSegment { Small, Medium, Big }
-    public enum PricePerRentingDays { OverSeven = 35, UpToSeen = 42, UpToThree = 50 }
+
+ 
     public class Car
     {
 
@@ -44,19 +44,21 @@ namespace CarRental.Models
         {
             get
             {
+
                 if (CarCategory == CarSegment.Small)
                 {
-                    return 35;
+                    return (decimal)CarPrice.Small;
                 }
                 else if (CarCategory == CarSegment.Medium)
                 {
-                    return 45;
+                    return (decimal)CarPrice.Medium;
                 }
                 else
                 {
-                    return 55;
+                    return (decimal)CarPrice.Big;
                 }
             }
+            set { }
         }
 
 

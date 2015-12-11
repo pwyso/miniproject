@@ -20,6 +20,9 @@
             @Html.DisplayNameFor(model => model.CarModel)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.RentPrice)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.IsHired)
         </th>
         <th></th>
@@ -38,6 +41,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CarModel)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.RentPrice)
         </td>
         <td>
             @Html.Raw((item.IsHired) ? "No" : "Yes") <!-- displays Yes/No instead of check box -->
@@ -67,6 +73,9 @@
             @Html.DisplayNameFor(model => model.CarModel)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.RentPrice)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.IsHired)
         </th>
         <th></th>
@@ -85,6 +94,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CarModel)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.RentPrice)
                 </td>
                 <td>
                     @Html.Raw((item.IsHired) ? "No" : "Yes") <!-- displays Yes/No instead of check box -->
@@ -114,6 +126,9 @@
             @Html.DisplayNameFor(model => model.CarModel)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.RentPrice)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.IsHired)
         </th>
         <th></th>
@@ -132,6 +147,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CarModel)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.RentPrice)
                 </td>
                 <td>
                     @Html.Raw((item.IsHired) ? "No" : "Yes") <!-- displays Yes/No instead of check box -->

@@ -14,7 +14,7 @@ namespace CarRental
     {
         protected void Application_Start()
         {
-            Database.SetInitializer(new DropCreateDatabaseAlways<CarRentalContext>());
+            //Database.SetInitializer(new DropCreateDatabaseAlways<CarRentalContext>());
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

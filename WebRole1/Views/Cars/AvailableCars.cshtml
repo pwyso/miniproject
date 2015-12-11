@@ -53,9 +53,13 @@
                 @*@Html.DisplayFor(model => item.IsHired)*@
             </td>
 
-            <td>
-                @Html.ActionLink("Book car", "Create", "Orders", new { id = item.CarRegNo }, null)
+             <td>
+                @Html.ActionLink("Book car", "GenerateOrder", "Orders", new { id = item.CarRegNo }, null)
             </td>
+
+            @*<td>
+                @Html.ActionLink("Book car", "Create", "Orders", new { id = item.CarRegNo }, null)
+            </td>*@
         </tr>
         }
     }
@@ -109,8 +113,12 @@
                 </td>
 
                 <td>
-                    @Html.ActionLink("Book car", "Create", "Customers")
+                    @Html.ActionLink("Book car", "GenerateOrder", "Orders", new { id = item.CarRegNo }, null)
                 </td>
+
+                @*<td>
+                    @Html.ActionLink("Book car", "Create", "Orders", new { id = item.CarRegNo }, null)
+                </td>*@
             </tr>
         }
     }
@@ -164,8 +172,12 @@
                 </td>
 
                 <td>
-                    @Html.ActionLink("Book car", "Create", "Customers")
+                    @Html.ActionLink("Book car", "GenerateOrder", "Orders", new { id = item.CarRegNo }, null)
                 </td>
+
+                @*<td>
+                    @Html.ActionLink("Book car", "Create", "Orders", new { id = item.CarRegNo }, null)
+                </td>*@
             </tr>
         }
     }

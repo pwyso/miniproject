@@ -10,12 +10,45 @@
     <h4>Order</h4>
     <hr />
     <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CarRegNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Car.CarRegNo)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Car.CarMake)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Car.CarMake)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Car.CarModel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Car.CarModel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DaysOfRental)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DaysOfRental)
         </dd>
 
         <dt>
@@ -27,16 +60,32 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DaysOfRental)
+            @Html.DisplayNameFor(model => model.Customer.CustLastName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DaysOfRental)
+            @Html.DisplayFor(model => model.Customer.CustLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.CustAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.CustAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.CustEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.CustEmail)
         </dd>
 
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.OrderID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "AllOrders", "Orders")
 </p>

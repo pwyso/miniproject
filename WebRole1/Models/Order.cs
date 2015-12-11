@@ -10,66 +10,46 @@ namespace CarRental.Models
     public class Order
     {
         [Display(Name = "Reservation No.")]
-        public string OrderID { get; set; }
-
-        [Display(Name = "Phone No.")]
-        [RegularExpression("[0-9]{1,11}", ErrorMessage = "No spaces allowed, max. 11 digits.")]    // numbers only, lenght 9-11
-        public string CustPhone { get; set; }
-
+        public int OrderID { get; set; }
+        
         [Display(Name = "Registration")]
-        //[StringLength(11, ErrorMessage = "Max. lenght is 11")]
-        //Reg. plates validation - 2/3 digits 1/2 capital letters 1-6 digits, eg. 151WX123456
-        //[RegularExpression("^[0-9]{2,3}[A-Z]{1,2}[0-9]{1,6}", ErrorMessage = "Invalid format: no spaces, capital letters only.")]
-        public string CarRegNo { get; }
+        public string CarRegNo { get; set; }
 
-        //[Required]
+        [Display(Name = "Days of rent")]
+        [Range(1, 30)]
+        public int DaysOfRental { get; set; }
+
         [Display(Name = "Car Category")]
-        public CarSegment CarCategory { get; }
-
-        //[Required]
-        [Display(Name = "Make")]
-        //[StringLength(20, ErrorMessage = "Max. lenght is 20")]
-        public string CarMake { get;}
-
-        //[Required]
-        [Display(Name = "Model")]
-        //[StringLength(20, ErrorMessage = "Max. lenght is 20")]
-        public string CarModel { get; }
-
+        public CarSegment CarCategory { get; set; }
 
         [Display(Name = "Price per Day")]
         public decimal RentPrice
         {
             get
             {
+
                 if (CarCategory == CarSegment.Small)
                 {
-                    return 35;
+                    return (decimal)CarPrice.Small;
                 }
                 else if (CarCategory == CarSegment.Medium)
                 {
-                    return 45;
+                    return (decimal)CarPrice.Medium;
                 }
                 else
                 {
-                    return 55;
+                    return (decimal)CarPrice.Big;
                 }
             }
+            set { }
         }
-
-
-        [Display(Name = "Availability")]
-        public bool IsHired { get;}
-
-        [Display(Name = "Days of rent")]
-        [Range(1, 30)]
-        public int DaysOfRental { get; set; }
 
         [Display(Name = "Total Cost")]
         public decimal TotalCost
         {
             get
             {
+
                 if (DaysOfRental <= 3)
                 {
                     return RentPrice * DaysOfRental;
@@ -84,6 +64,9 @@ namespace CarRental.Models
                 }
             }
         }
+
+        [Display(Name = "Phone No.")]
+        public string CustPhone { get; set; }
 
         public virtual Car Car { get; set; }
         public virtual Customer Customer { get; set; }
