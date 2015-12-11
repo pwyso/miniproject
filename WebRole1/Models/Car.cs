@@ -8,10 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace CarRental.Models
 {
-
- 
     public class Car
     {
 
