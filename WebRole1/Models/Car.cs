@@ -30,12 +30,12 @@ namespace CarRental.Models
 
         [Required]
         [Display(Name = "Make")]
-        [StringLength(20, ErrorMessage = "Max. lenght is 20")]
+        [StringLength(20, ErrorMessage = "Max. length is 20")]
         public string CarMake { get; set; }
 
         [Required]
         [Display(Name = "Model")]
-        [StringLength(20, ErrorMessage = "Max. lenght is 20")]
+        [StringLength(20, ErrorMessage = "Max. length is 20")]
         public string CarModel { get; set; }
 
 
