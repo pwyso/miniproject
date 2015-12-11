@@ -17,11 +17,19 @@ namespace CarRental.Controllers
     {
         private CarRentalContext db = new CarRentalContext();
 
-        // GET: api/Cars1
-        public IQueryable<Car> GetCars()
+        [Route("cars/all")]
+        // GET api/phonebook   get all phonebook listings
+        [ResponseType(typeof(IEnumerable<CarRental.Models.Car>))]
+        public IHttpActionResult GetCars()
         {
-            return db.Cars;
+            return Ok(db.Cars);                                  // 200 OK, listings serialized in response body
         }
+
+        //// GET: api/Cars1
+        //public IQueryable<Car> GetCars()
+        //{
+        //    return db.Cars;
+        //}
 
         // GET: api/Cars1/5
         [ResponseType(typeof(Car))]

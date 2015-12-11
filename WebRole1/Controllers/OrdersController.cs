@@ -92,52 +92,49 @@ namespace CarRental.Controllers
         public ActionResult Create([Bind(Include = "OrderID,CarRegNo,DaysOfRental,TotalCost,CustPhone")] Order order)
         {
             Car car = (Car)TempData["ChosenCar"];
+            TempData.Keep("ChosenCar");
             Customer cus = (Customer)TempData["CustomerOrder"];
             order.CarRegNo = car.CarRegNo;
             order.CustPhone = cus.CustPhone;
             order.RentPrice = car.RentPrice;
-         
+            TempData["Order"] = order;
+
+
             if (ModelState.IsValid)
             {
                 db.Orders.Add(order);
                 db.SaveChanges();
-                return RedirectToAction("AllOrders");
+                car.IsHired = true;
+                db.Entry(car).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("ConfirmOrder");
             }
 
             return View(order);
         }
 
-        //// GET: Orders/Create
-        //public ActionResult Create(string id)
-        //{
-        //    Car c = db.Cars.Find(id);
+        [HttpGet]
+        public ActionResult UpdateStatus()
+        {
+            Car c = (Car)TempData["ChosenCar"];
+            TempData.Keep("ChosenCar");
+            Car car = db.Cars.Find(c.CarRegNo);
+            if (car == null)
+            {
+                return HttpNotFound();
+            }
+            return View();
+        }
 
-        //    ViewBag.SelectedCar = " Make " + c.CarMake + " Model " + c.CarModel + " Price per Day " + c.RentPrice ;
-        //    ViewBag.CarRegNo = new SelectList(db.Cars,"CarRegNo", "CarMake");
-        //    ViewBag.CustPhone = new SelectList(db.Customers, "CustPhone", "CustFirstName", "CustLastName");
-        //    ViewBag.Reg = c.CarRegNo;
-        //    return View();
-        //}
 
-        // POST: Orders/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // GET: Orders
+        public ActionResult ConfirmOrder()
+        {
+            Order ordr = (Order)TempData["Order"];
+            var order = db.Orders.Find(ordr.OrderID);
+            return View(order);
+        }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "OrderID,CarRegNo,DaysOfRental,TotalCost,CustPhone")] Order order)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Orders.Add(order);
-        //        db.SaveChanges();
-        //        return RedirectToAction("AllOrders");
-        //    }
-
-        //    ViewBag.CarRegNo = new SelectList(db.Cars, "CarRegNo", "CarMake", order.CarRegNo);
-        //    ViewBag.CustPhone = new SelectList(db.Customers, "CustPhone", "CustFirstName", order.CustPhone);
-        //    return View(order);
-        //}
 
         // GET: Orders/Edit/5
         public ActionResult Edit(string id)

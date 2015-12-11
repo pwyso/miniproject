@@ -15,14 +15,6 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.OrderID, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.OrderID, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.OrderID, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
         <div class="form-group">
             @Html.LabelFor(model => model.CarRegNo, htmlAttributes: new { @class = "control-label col-md-2" })<!--change the Mark to Grade-->
             <div class="col-md-10">
@@ -54,14 +46,6 @@
                 @Html.ValidationMessageFor(model => model.CustPhone, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.Customer.CustFirstName, htmlAttributes: new { @class = "control-label col-md-2" })<!--change the Mark to Grade-->
-            <div class="col-md-10">
-                @Html.DisplayFor(model => model.Customer.CustFirstName, new { htmlAttributes = new { @class = "form-control" } })<!--Change the Editor to Display-->
-                @Html.ValidationMessageFor(model => model.Customer.CustFirstName, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.TotalCost, htmlAttributes: new { @class = "control-label col-md-2" })<!--change the Mark to Grade-->

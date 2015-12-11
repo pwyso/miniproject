@@ -15,6 +15,9 @@
             @Html.DisplayNameFor(model => model.OrderID)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.OrderTime)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Car.CarMake)
         </th>
         <th>
@@ -42,6 +45,9 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.OrderID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderTime)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Car.CarMake)

@@ -1,0 +1,90 @@
+﻿@model CarRental.Models.Order
+
+@{
+    ViewBag.Title = "ConfirmOrder";
+}
+
+<h2>Order Confirmation</h2>
+
+<div>
+    @*<h4>Order</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DaysOfRental)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DaysOfRental)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Car.CarMake)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Car.CarMake)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Car.CarModel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Car.CarModel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.CustFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.CustFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.CustLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.CustLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.CustAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.CustAddress)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to Home", "Index")
+</p>

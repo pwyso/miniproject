@@ -11,7 +11,10 @@ namespace CarRental.Models
     {
         [Display(Name = "Reservation No.")]
         public int OrderID { get; set; }
-        
+
+        [Display(Name = "Time")]
+        public DateTime OrderTime { get { return DateTime.Now; } }
+
         [Display(Name = "Registration")]
         public string CarRegNo { get; set; }
 
@@ -64,6 +67,7 @@ namespace CarRental.Models
                 }
             }
         }
+
 
         [Display(Name = "Phone No.")]
         public string CustPhone { get; set; }
