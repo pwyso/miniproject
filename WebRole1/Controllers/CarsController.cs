@@ -14,7 +14,6 @@ namespace CarRental.Controllers
     {
         private CarRentalContext db = new CarRentalContext();
 
-
         // GET  ../Cars/allcars   displays all cars
         [HttpGet]                                       // GET only
         public ActionResult AllCars()
@@ -67,7 +66,6 @@ namespace CarRental.Controllers
                 db.SaveChanges();
                 return RedirectToAction("AllCars");
             }
-
             return View(car);
         }
 

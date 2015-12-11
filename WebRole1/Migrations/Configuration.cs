@@ -4,12 +4,13 @@ namespace CarRental.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using CarRental.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<CarRental.Models.CarRentalContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(CarRental.Models.CarRentalContext context)
