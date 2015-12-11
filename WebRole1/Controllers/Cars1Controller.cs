@@ -116,7 +116,6 @@ namespace CarRental.Controllers
 
             return Ok(car);
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
