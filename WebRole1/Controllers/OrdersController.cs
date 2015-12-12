@@ -113,19 +113,6 @@ namespace CarRental.Controllers
             return View(order);
         }
 
-        [HttpGet]
-        public ActionResult UpdateStatus()
-        {
-            Car c = (Car)TempData["ChosenCar"];
-            TempData.Keep("ChosenCar");
-            Car car = db.Cars.Find(c.CarRegNo);
-            if (car == null)
-            {
-                return HttpNotFound();
-            }
-            return View();
-        }
-
 
         // GET: Orders
         public ActionResult ConfirmOrder()

@@ -19,7 +19,7 @@ namespace CarRental.Controllers
         public ActionResult AllCars()
         {
             var records = db.Cars.OrderBy(r => r.CarMake);
-            return View(records);                              // strongly typed view, don't need though to pass in a car object
+            return View(records);                           // strongly typed view, don't need though to pass in a car object
         }
 
         // GET  ../Cars/availablecars   displays available cars only
