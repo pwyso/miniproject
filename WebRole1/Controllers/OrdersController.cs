@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using CarRental.Models;
 
@@ -78,6 +74,7 @@ namespace CarRental.Controllers
             Customer cus = (Customer)TempData["CustomerOrder"];
             TempData.Keep("ChosenCar");
             TempData.Keep("CustomerOrder");
+            ViewBag.SelectedCar = car.CarMake + "  " + car.CarModel + " price per day " + car.RentPrice;
             Order co = new Order();
             co.CarRegNo = car.CarRegNo;
             co.CustPhone = cus.CustPhone;
@@ -98,7 +95,6 @@ namespace CarRental.Controllers
             order.CustPhone = cus.CustPhone;
             order.RentPrice = car.RentPrice;
             TempData["Order"] = order;
-
 
             if (ModelState.IsValid)
             {
@@ -124,9 +120,9 @@ namespace CarRental.Controllers
 
 
         // GET: Orders/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -159,9 +155,9 @@ namespace CarRental.Controllers
         }
 
         // GET: Orders/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -176,7 +172,7 @@ namespace CarRental.Controllers
         // POST: Orders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
             Order order = db.Orders.Find(id);
             db.Orders.Remove(order);

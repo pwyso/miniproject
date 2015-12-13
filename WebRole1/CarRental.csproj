@@ -331,6 +331,7 @@
     <Content Include="Views\Orders\AllOrders.cshtml" />
     <Content Include="Views\Orders\GenerateOrder.cshtml" />
     <Content Include="Views\Orders\ConfirmOrder.cshtml" />
+    <Content Include="Views\Cars\ManageCars.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

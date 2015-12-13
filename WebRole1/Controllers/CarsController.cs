@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using CarRental.Models;
 
@@ -14,15 +11,15 @@ namespace CarRental.Controllers
     {
         private CarRentalContext db = new CarRentalContext();
 
-        // GET  ../Cars/allcars   displays all cars
+        // GET  ../Cars/allcars   displays all cars, no Edit/Details/Delete in view
         [HttpGet]                                       // GET only
         public ActionResult AllCars()
         {
             var records = db.Cars.OrderBy(r => r.CarMake);
-            return View(records);                           // strongly typed view, don't need though to pass in a car object
+            return View(records);                       // strongly typed view, don't need though to pass in a car object
         }
 
-        // GET  ../Cars/availablecars   displays available cars only
+        // GET  ../Cars/AvailableCars    displays available cars only
         [HttpGet]                                       // GET only
         public ActionResult AvailableCars()
         {
@@ -30,7 +27,15 @@ namespace CarRental.Controllers
             return View(records);
         }
 
-        // GET: Cars/Details/5
+        // GET  ../Cars/ManageCars       displays all cars with Edit/Details/Delete in view
+        [HttpGet]                                       // GET only
+        public ActionResult ManageCars()
+        {
+            var records = db.Cars.OrderBy(r => r.CarMake);
+            return View(records);                       // strongly typed view, don't need though to pass in a car object
+        }
+
+        // GET  ..Cars/Details/5
         [HttpGet]
         public ActionResult Details(string id)
         {
@@ -46,16 +51,14 @@ namespace CarRental.Controllers
             return View(car);
         }
 
-        // GET: Cars/Create
+        // GET  ..Cars/Create
         [HttpGet]
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Cars/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST  ..Cars/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CarRegNo,CarCategory,CarMake,CarModel,IsHired")] Car car)
@@ -69,7 +72,7 @@ namespace CarRental.Controllers
             return View(car);
         }
 
-        // GET: Cars/Edit/5
+        // GET  ..Cars/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -84,9 +87,7 @@ namespace CarRental.Controllers
             return View(car);
         }
 
-        // POST: Cars/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST  ..Cars/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CarRegNo,CarCategory,CarMake,CarModel,DaysOfRental,IsHired")] Car car)
@@ -100,7 +101,7 @@ namespace CarRental.Controllers
             return View(car);
         }
 
-        // GET: Cars/Delete/5
+        // GET  ..Cars/Delete/5
         [HttpGet]
         public ActionResult Delete(string id)
         {
@@ -116,7 +117,7 @@ namespace CarRental.Controllers
             return View(car);
         }
 
-        // POST: Cars/Delete/5
+        // POST  ..Cars/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)

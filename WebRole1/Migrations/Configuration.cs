@@ -1,10 +1,6 @@
 namespace CarRental.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
-    using CarRental.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<CarRental.Models.CarRentalContext>
     {

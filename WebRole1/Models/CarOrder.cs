@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace CarRental.Models
 {
+    // class for creating order using GenerateOrder.cshtml view 
+    // displayed selected car and form fields to put in customer details  
     public class CarOrder
     {
         public Car SelectedCar { get; set; }

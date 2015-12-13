@@ -4,10 +4,9 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Car details</h2>
 
 <div>
-    <h4>Car</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -54,5 +53,5 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", "Cars", new { id = Model.CarRegNo }) |
-    @Html.ActionLink("Back to List", "AllCars", "Cars")
+    @Html.ActionLink("Back to List", "ManageCars", "Cars")
 </p>

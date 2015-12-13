@@ -4,11 +4,8 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h2>All orders</h2>
+<br>
 <table class="table">
     <tr>
         <th>
@@ -41,41 +38,46 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.OrderID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OrderTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Car.CarMake)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Car.CarModel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DaysOfRental)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer.CustFirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer.CustLastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RentPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalCost)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OrderID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OrderID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OrderID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Car.CarMake)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Car.CarModel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DaysOfRental)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.CustFirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.CustLastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RentPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalCost)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.OrderID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.OrderID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.OrderID })
+            </td>
+        </tr>
+    }
 
 </table>
+
+<p>
+    @Html.ActionLink("Create New", "Create", "Orders")
+</p>

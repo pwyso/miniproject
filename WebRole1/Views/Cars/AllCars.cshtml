@@ -47,12 +47,6 @@
         </td>
         <td>
             @Html.Raw((item.IsHired) ? "No" : "Yes") <!-- displays Yes/No instead of check box -->
-            @*@Html.DisplayFor(modelItem => item.IsHired)*@
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", "Cars", new { id = item.CarRegNo }, null) |
-            @Html.ActionLink("Details", "Details", "Cars", new { id = item.CarRegNo }, null) |
-            @Html.ActionLink("Delete", "Delete", "Cars", new { id = item.CarRegNo }, null)
         </td>
     </tr>
     }
@@ -100,12 +94,6 @@
                 </td>
                 <td>
                     @Html.Raw((item.IsHired) ? "No" : "Yes") <!-- displays Yes/No instead of check box -->
-                    @*@Html.DisplayFor(modelItem => item.IsHired)*@
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", "Cars", new { id = item.CarRegNo }, null) |
-                    @Html.ActionLink("Details", "Details", "Cars", new { id = item.CarRegNo }, null) |
-                    @Html.ActionLink("Delete", "Delete", "Cars", new { id = item.CarRegNo }, null)
                 </td>
             </tr>
         }
@@ -153,12 +141,6 @@
                 </td>
                 <td>
                     @Html.Raw((item.IsHired) ? "No" : "Yes") <!-- displays Yes/No instead of check box -->
-                    @*@Html.DisplayFor(modelItem => item.IsHired)*@
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", "Cars", new { id = item.CarRegNo }, null) |
-                    @Html.ActionLink("Details", "Details", "Cars", new { id = item.CarRegNo }, null) |
-                    @Html.ActionLink("Delete", "Delete", "Cars", new { id = item.CarRegNo }, null)
                 </td>
             </tr>
         }
@@ -166,7 +148,7 @@
 </table>
 
 <p>
-    @Html.ActionLink("Add car", "Create", "Cars")
+    @Html.ActionLink("Available cars", "Availablecars", "Cars")
 </p>
 <P>
     @Html.ActionLink("Back to Home", "Index", "Home")

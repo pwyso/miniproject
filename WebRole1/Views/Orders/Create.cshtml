@@ -4,65 +4,44 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Order</h2>
+@{
+    List<SelectListItem> days = new List<SelectListItem>();  // create 30 days for dropdown list
+    for (int i = 1; i <= 30; i++)
+    {
+        days.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
+    }
+}
+
+<h2>Order <span style="font-size:medium">step 2</span></h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Order </h4>
+
+        <h4>Customer details | <span style="color:darkblue;font-weight:bold">Rent days</span> | Confirmation</h4>
+        <br><h4>Selected car</h4>
+        <h4>@ViewBag.SelectedCar</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CarRegNo, htmlAttributes: new { @class = "control-label col-md-2" })<!--change the Mark to Grade-->
+            @Html.LabelFor(model => model.DaysOfRental, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DisplayFor(model => model.CarRegNo, new { htmlAttributes = new { @class = "form-control" } })<!--Change the Editor to Display-->
-                @Html.ValidationMessageFor(model => model.CarRegNo, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.RentPrice, htmlAttributes: new { @class = "control-label col-md-2" })<!--change the Mark to Grade-->
-            <div class="col-md-10">
-                @Html.DisplayFor(model => model.RentPrice, new { htmlAttributes = new { @class = "form-control" } })<!--Change the Editor to Display-->
-                @Html.ValidationMessageFor(model => model.RentPrice, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-                @Html.LabelFor(model => model.DaysOfRental, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.DaysOfRental, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DaysOfRental, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CustPhone, htmlAttributes: new { @class = "control-label col-md-2" })<!--change the Mark to Grade-->
-            <div class="col-md-10">
-                @Html.DisplayFor(model => model.CustPhone, new { htmlAttributes = new { @class = "form-control" } })<!--Change the Editor to Display-->
-                @Html.ValidationMessageFor(model => model.CustPhone, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TotalCost, htmlAttributes: new { @class = "control-label col-md-2" })<!--change the Mark to Grade-->
-            <div class="col-md-10">
-                @Html.DisplayFor(model => model.TotalCost, new { htmlAttributes = new { @class = "form-control" } })<!--Change the Editor to Display-->
-                @Html.ValidationMessageFor(model => model.TotalCost, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.DaysOfRental, days, "-- days --")         @* dropdown list with 30 days*@
+                @Html.ValidationMessageFor(model => model.DaysOfRental, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Order Car" class="btn btn-default" />
+                <input type="submit" value="Step 2" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "AvailableCars", "Cars")
 </div>

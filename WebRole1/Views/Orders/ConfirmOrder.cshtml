@@ -4,10 +4,12 @@
     ViewBag.Title = "ConfirmOrder";
 }
 
-<h2>Order Confirmation</h2>
+<h2>Order <span style="font-size:medium">step 3</span></h2>
 
 <div>
-    @*<h4>Order</h4>*@
+    <h4>step 3</h4>
+    <h4>Customer details | Rent days | <span style="color:darkblue;font-weight:bold">Confirmation</span></h4>
+
     <hr />
     <dl class="dl-horizontal">
 
@@ -86,5 +88,5 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Back to Home", "Index")
+    @Html.ActionLink("Back to Home", "Index", "Home")
 </p>
