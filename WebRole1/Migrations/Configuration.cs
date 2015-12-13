@@ -1,4 +1,4 @@
-namespace CarRental.Migrations
+﻿namespace CarRental.Migrations
 {
     using System.Data.Entity.Migrations;
 
@@ -26,3 +26,4 @@ namespace CarRental.Migrations
         }
     }
 }
+

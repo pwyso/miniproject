@@ -12,6 +12,7 @@
     <AssemblyName>MiniProject</AssemblyName>
     <StartDevelopmentStorage>True</StartDevelopmentStorage>
     <Name>MiniProject</Name>
+    <UseWebProjectPorts>False</UseWebProjectPorts>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
