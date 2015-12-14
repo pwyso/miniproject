@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ServiceConfiguration serviceName="MiniProject" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2015-04.2.6">
   <Role name="CarRental">
-    <Instances count="1" />
+    <Instances count="2" />
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
       <Setting name="IttCarHire" value="Server=tcp:ka1ymdhr1y.database.windows.net,1433;Database=CarRentalContext;User ID=tjmccann@ka1ymdhr1y;Password=none;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="wypi@wp.pl" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEDzX87GofGadQsMB/9EUUj0wDQYJKoZIhvcNAQEBBQAEggEAl8+fl3lcousgOS/N6cnyLoZ3vL+gbhZC8/33ogJvvVjLiOPX0eCV8E7ru58MoxGvOvThls8GC9N3JwkNMt7TkkZjvvXxXCHSIGKLe9cQqtX4/4fe6RJ1VLUX7gSrbUfJeGvhjjY+Q4oVxQDhUB17vtE/6l41iB16P3Mhs4J9p+Fl9dxz1LJRbNGsUfGmqtmcLUfAP/7jeHTn28+RuMMnZqlnm1HinAwZp1hvU2CFBl71GWeq1EpJOT3DYQ6nYxNNeZMTdCoTdo4fiKr+tDVVGF09UituyNXQNqD7D81IUvIWoaX8aFfC/tmJGue2FkRdzhyNdi5PC0RCzIJXtvhnXzAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECIWrKADbebl7gBCxjssqUrtneYP518/XhEs3" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration" value="2016-12-13T23:59:59.0000000+00:00" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteForwarder.Enabled" value="true" />
     </ConfigurationSettings>
+    <Certificates>
+      <Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" thumbprint="24680B5E1C94E76BEFB0DAB234B5C9A9E67722F4" thumbprintAlgorithm="sha1" />
+    </Certificates>
   </Role>
 </ServiceConfiguration>

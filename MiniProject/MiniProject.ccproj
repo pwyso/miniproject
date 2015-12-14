@@ -13,6 +13,7 @@
     <StartDevelopmentStorage>True</StartDevelopmentStorage>
     <Name>MiniProject</Name>
     <UseWebProjectPorts>False</UseWebProjectPorts>
+    <PackageEnableRemoteDebugger>True</PackageEnableRemoteDebugger>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CarRentalContent" />
+    <Folder Include="CarRentalContent\bin" />
+    <Folder Include="Profiles" />
   </ItemGroup>
   <ItemGroup>
     <DiagnosticsConfiguration Include="CarRentalContent\diagnostics.wadcfgx" />
@@ -51,6 +54,17 @@
       <RoleType>Web</RoleType>
       <RoleName>CarRental</RoleName>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishProfile Include="Profiles\mpv1Staging.azurePubxml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CarRentalContent\bin\install.cmd">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="CarRentalContent\bin\NDP452-KB2901954-Web.exe">
+      <SubType>Content</SubType>
+    </Content>
   </ItemGroup>
   <!-- Import the target files for this project template -->
   <PropertyGroup>

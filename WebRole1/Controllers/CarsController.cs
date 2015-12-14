@@ -67,7 +67,7 @@ namespace CarRental.Controllers
             {
                 db.Cars.Add(car);
                 db.SaveChanges();
-                return RedirectToAction("AllCars");
+                return RedirectToAction("ManageCars");
             }
             return View(car);
         }
@@ -96,7 +96,7 @@ namespace CarRental.Controllers
             {
                 db.Entry(car).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("AllCars");
+                return RedirectToAction("ManageCars");
             }
             return View(car);
         }
@@ -125,7 +125,7 @@ namespace CarRental.Controllers
             Car car = db.Cars.Find(id);
             db.Cars.Remove(car);
             db.SaveChanges();
-            return RedirectToAction("AllCars");
+            return RedirectToAction("ManageCars");
         }
 
         protected override void Dispose(bool disposing)

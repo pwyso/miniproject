@@ -9,6 +9,7 @@ namespace CarRental.Models
         [Display(Name = "Reserv. No.")]
         public int OrderID { get; set; }
 
+        // generated when Order created
         [Display(Name = "Time")]
         public DateTime OrderTime { get { return DateTime.Now; } }
 
@@ -69,6 +70,7 @@ namespace CarRental.Models
         }
 
         // Foreign Key of Customer table/modell class
+        [RegularExpression("[0-9]{8,12}", ErrorMessage = "No spaces allowed, 8 -12 digits.")]    // numbers only, lenght 8-12
         [Display(Name = "Phone No.")]
         public string CustPhone { get; set; }
 

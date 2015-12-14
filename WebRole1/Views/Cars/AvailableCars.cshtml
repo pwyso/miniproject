@@ -5,15 +5,12 @@
     ViewBag.Title = "AvailableCars";
 }
 
-<h2>Available cars</h2>
+<h2>Rent a car</h2>
 <br>
-<h4><b>Small</b></h4>
+<h4 style="color:brown;font-weight:bold">Small</h4>
 
 <table  class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CarCategory)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.CarMake)
         </th>
@@ -37,9 +34,6 @@
         {
          <tr>
             <td>
-                @Html.DisplayFor(model => item.CarCategory)
-            </td>
-            <td>
                 @Html.DisplayFor(model => item.CarMake)
             </td>
             <td>
@@ -61,13 +55,10 @@
 
 </table>
 
-<h4><b>Medium</b></h4>
+<h4 style="color:brown;font-weight:bold">Medium</h4>
 
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CarCategory)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.CarMake)
         </th>
@@ -91,9 +82,6 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(model => item.CarCategory)
-                </td>
-                <td>
                     @Html.DisplayFor(model => item.CarMake)
                 </td>
                 <td>
@@ -115,13 +103,10 @@
 
 </table>
 
-<h4><b>Big</b></h4>
+<h4 style="color:brown;font-weight:bold">Big</h4>
 
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CarCategory)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.CarMake)
         </th>
@@ -144,9 +129,6 @@
         if (item.CarCategory == CarRental.Models.CarSegment.Big)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(model => item.CarCategory)
-                </td>
                 <td>
                     @Html.DisplayFor(model => item.CarMake)
                 </td>

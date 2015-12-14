@@ -11,7 +11,8 @@ namespace CarRental.Models
         //lets you enter the primary key for the CustPhone rather than having the database generate it
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         // validate phone number: only digits allowed 8 to 12, eg. 018268043, 035386112233
-        [RegularExpression("[0-9]{8,12}", ErrorMessage = "No spaces allowed, max. 12 digits.")]    // numbers only, lenght 9-11
+        //[StringLength(15, ErrorMessage = "Max. lenght is 15")]
+        [RegularExpression("[0-9]{8,12}", ErrorMessage = "No spaces allowed, 8 - 12 digits.")]    // numbers only, lenght 8-12
         [Display(Name = "Phone No.")]
         public string CustPhone { get; set; }
 

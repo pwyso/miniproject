@@ -69,7 +69,6 @@
                 @Html.DisplayFor(modelItem => item.TotalCost)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.OrderID }) |
                 @Html.ActionLink("Details", "Details", new { id = item.OrderID }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.OrderID })
             </td>
@@ -79,5 +78,5 @@
 </table>
 
 <p>
-    @Html.ActionLink("Create New", "Create", "Orders")
+    @Html.ActionLink("Back to Home", "Index", "Home")
 </p>
