@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using CarRental.Models;
@@ -11,31 +10,85 @@ namespace CarRental.Controllers
     {
         private CarRentalContext db = new CarRentalContext();
 
-        [Route("cars/all")]
-        // GET cars/all
+        // GET ../allcars                          display all cars
+        [Route("allcars")]
+        [HttpGet]
         [ResponseType(typeof(IEnumerable<CarRental.Models.Car>))]
-        public IHttpActionResult GetCars()
+        public IHttpActionResult AllCars()
         {
-            return Ok(db.Cars);                   // 200 OK, listings serialized in response body
+            var records = db.Cars.ToList();
+            if (records.Count() > 0)
+            {
+                return Ok(records.ToList());
+            }
+            else { return NotFound(); }
         }
 
-
-        // GET: api/Cars1/5
-        [ResponseType(typeof(Car))]
-        public async Task<IHttpActionResult> GetCarById(string id)
+        // GET: ../availablecars                    display all available cars
+        [Route("availablecars")]
+        [HttpGet]                                    
+        public IHttpActionResult AvailableCars()
         {
-            Car car = await db.Cars.FindAsync(id);
-            if (car == null)
+            var records = db.Cars.OrderBy(r => r.CarMake).Where(r => r.IsHired == false);
+            if (records.Count() > 0)
+            {
+                return Ok(records.ToList());
+            }
+            else { return NotFound(); }
+        }
+
+        // GET: ../hiredcars                        display all hired cars
+        [Route("hiredcars")]
+        [HttpGet]
+        public IHttpActionResult HiredCars()
+        {
+            var records = db.Cars.OrderBy(r => r.CarMake).Where(r => r.IsHired == true);
+            if (records.Count() > 0)
+            {
+                return Ok(records.ToList());
+            }
+            else { return NotFound(); }
+        }
+
+        // GET: ../availablecars/Honda               display available cars for particular car make
+        [Route("availablecars/make/{make}")]
+        [HttpGet]
+        public IHttpActionResult AvailableCarsByMake(string make)
+        {
+            var records = db.Cars.OrderBy(r => r.CarMake).Where(r => r.CarMake.ToUpper() == make.ToUpper() && r.IsHired == false );
+            if (records.Count() > 0)
+            {
+                return Ok(records.ToList());
+            }
+            else { return NotFound(); }
+        }
+
+        // GET: ../availablecars/segment/small               display available cars for Small/Medium/Big segment
+        [Route("availablecars/segment/{segment}")]
+        [HttpGet]
+        public IHttpActionResult AvailableCarsBySegment(string segment)
+        {
+            var records = db.Cars.OrderBy(r => r.CarMake).Where(r => r.IsHired == false &&
+            r.CarCategory.ToString().ToUpper() == segment.ToUpper());
+            if (records.Count() > 0)
+            {
+                return Ok(records.ToList());
+            }
+            else { return NotFound(); }
+        }
+
+        // GET: ../findcar/02D2222                    find car with reg. no. 02D2222
+        [Route("findcar/regno/{regno}")]
+        [HttpGet]
+        public IHttpActionResult FindCarByRegNo(string regno)
+        {
+            Car record = db.Cars.Find(regno);
+            if (record == null)
             {
                 return NotFound();
             }
-
-            return Ok(car);
+            return Ok(record);
         }
-
-        // methods here to browse cars, chose car, book car
-        // then Client part that will use above methods 
-
 
         protected override void Dispose(bool disposing)
         {

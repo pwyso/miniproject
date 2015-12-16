@@ -53,6 +53,7 @@
       <Private>True</Private>
       <RoleType>Web</RoleType>
       <RoleName>CarRental</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

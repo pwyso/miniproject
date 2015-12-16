@@ -1,4 +1,6 @@
-﻿using System.Web.Http;
+﻿using CarRental.Models;
+using System.Data.Entity;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;

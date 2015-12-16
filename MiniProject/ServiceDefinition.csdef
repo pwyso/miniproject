@@ -10,7 +10,7 @@
     </Sites>
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
-      <Setting name="IttCarHire" />
+      <Setting name="DefaultConnection" />
     </ConfigurationSettings>
     <Endpoints>
       <InputEndpoint name="Endpoint1" protocol="http" port="80" />
@@ -27,9 +27,6 @@
         </Environment>
       </Task>
     </Startup>
-    <!--<LocalResources>
-      <LocalStorage name="LocalStorage1" cleanOnRoleRecycle="false" />
-    </LocalResources>-->
     <Imports>
       <Import moduleName="RemoteAccess" />
       <Import moduleName="RemoteForwarder" />

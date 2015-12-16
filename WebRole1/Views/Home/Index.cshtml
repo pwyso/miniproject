@@ -9,7 +9,7 @@
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Welcome to Car Rental</h2>
+        <h2>Welcome to ITT Car Hire</h2>
         <p>
             ITT Car Hire are the number 1 car hire company in Ireland offering cars for rent
             at lowest rates. We have a wide range of cars to cater to all tastes and budgets.
@@ -18,11 +18,11 @@
     <div class="col-md-4">
         <h2>List of cars</h2>
         <p>You can check all available cars ITT Car Hire has to offer within segmens A, B and C.</p>
-        <p><a class="btn btn-default" href="http://localhost:5141/cars/allcars">See all cars &raquo;</a></p>
+         @Html.ActionLink("See all cars", "AllCars", "Cars", new { area = "" }, new { @class = "btn btn-default" })
     </div>
     <div class="col-md-4">
         <h2>Cars available to rent</h2>
         <p>Check what cars are available and quickly book a car of your choice.</p>
-        <p><a class="btn btn-default" href="http://localhost:5141/cars/availablecars">Rent a car &raquo;</a></p>
+        @Html.ActionLink("Rent a car", "AvailableCars", "Cars", new { area = "" }, new { @class = "btn btn-default" })
     </div>
 </div>
